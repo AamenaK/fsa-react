@@ -2,6 +2,7 @@ import React from "react";
 import Header from "./Header";
 import Footer from "./footer";
 import Name from "./Name";
+import Counter from "./utils/Counter";
 
 
 function App() {
@@ -11,6 +12,8 @@ function App() {
    //return div;
 
    return <div>
+       <Counter count = {10} />
+       <Counter count = {0} /> 
        <Header />
        <h1>Hello React</h1>
        <Name personName = "John" age = "21" />

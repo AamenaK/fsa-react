@@ -1,4 +1,10 @@
-const ProductItem = ({ product }) => {
+const ProductItem = ({ product, onAdd }) => {
+
+    const onAddClick = () => {
+        onAdd(product);
+    }
+
+
     return <div className = "col-md-3">
         <div className="card">
             <img className="card-img-top" src = {product.img} />
@@ -11,7 +17,7 @@ const ProductItem = ({ product }) => {
                 </h6>
             </div>
             <div className="card-footer">
-                <button className="btn btn-danger btn-sm">
+                <button className="btn btn-danger btn-sm" onClick={onAddClick}>
                     Add To Cart
                     <i className="fa fa-shopping-cart"></i>
                 </button>

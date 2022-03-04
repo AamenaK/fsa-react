@@ -9,3 +9,7 @@ class Footer extends React.Component {
 };
 
 export default Footer;
+
+
+
+//input pass through props and output pass through functions/callback functions.

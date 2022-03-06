@@ -1,3 +1,15 @@
+// const CartButton = ({product, onAddClick }) => product.inStock ?
+//         <button disabled={!product.inStock} className="btn btn-danger btn-sm" onClick={onAddClick}>
+//             Add to cart<i className="fa fa-shopping-cart"></i>
+//         </button> : null
+
+import ShouldRender from "./ShouldRender";
+
+const CartButton = ({product, onAddClick }) => product.inStock &&
+        <button disabled={!product.inStock} className="btn btn-danger btn-sm" onClick={onAddClick}>
+            Add to cart<i className="fa fa-shopping-cart"></i>
+        </button> 
+
 const ProductItem = ({ product, onAdd }) => {
 
     const onAddClick = () => {
@@ -17,11 +29,12 @@ const ProductItem = ({ product, onAdd }) => {
                 </h6>
             </div>
             <div className="card-footer">
-                <button className="btn btn-danger btn-sm" onClick={onAddClick}>
-                    Add To Cart
-                    <i className="fa fa-shopping-cart"></i>
-                </button>
-             </div>
+                <ShouldRender cond = {product.inStock}>
+                    <button disabled={!product.inStock} className="btn btn-danger btn-sm" onClick={onAddClick}>
+                    Add to cart<i className="fa fa-shopping-cart"></i>
+                    </button> 
+                </ShouldRender>
+            </div>
         </div>
     </div>
 }

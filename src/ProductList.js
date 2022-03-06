@@ -1,4 +1,5 @@
 import ProductItem from "./ProductItem";
+import ShouldRender from "./ShouldRender";
 
 const ProductList = () => {
     const cart = [];
@@ -15,6 +16,7 @@ const ProductList = () => {
     ];
 
     return <div>
+        <ShouldRender></ShouldRender>
         {products.map(item => <ProductItem key={item.id} product={item} onAdd={onAddCartClick}/>)}
     </div>
 }

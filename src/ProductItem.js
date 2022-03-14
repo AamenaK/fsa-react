@@ -25,7 +25,9 @@ const ProductItem = ({ product, onAdd }) => {
             </div>
             <img className="card-img-top" src = {product.img} />
             <div className="card-body" >
+                <hr />
                 <b>$ {product.price}</b>
+                <hr />
                 <h6>
                     <label>In Stock?</label>
                     <input disabled type="checkbox" checked={product.inStock} />

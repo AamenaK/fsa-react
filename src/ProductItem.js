@@ -4,6 +4,7 @@
 //         </button> : null
 
 import ShouldRender from "./ShouldRender";
+import IfElse from "./utils/IfElse";
 
 const CartButton = ({product, onAddClick }) => product.inStock &&
         <button disabled={!product.inStock} className="btn btn-danger btn-sm" onClick={onAddClick}>
@@ -18,10 +19,12 @@ const ProductItem = ({ product, onAdd }) => {
 
 
     return <div className = "col-md-3">
-        <div className="card">
+        <div style={{ margin:'20px' }} className="card">
+            <div className="card-header">
+                <span className="card-title">{product.brand} {product.model}</span>
+            </div>
             <img className="card-img-top" src = {product.img} />
             <div className="card-body" >
-                <h4 className="card-title">{product.brand} {product.model}</h4>
                 <b>$ {product.price}</b>
                 <h6>
                     <label>In Stock?</label>
@@ -29,11 +32,16 @@ const ProductItem = ({ product, onAdd }) => {
                 </h6>
             </div>
             <div className="card-footer">
-                <ShouldRender cond = {product.inStock}>
-                    <button disabled={!product.inStock} className="btn btn-danger btn-sm" onClick={onAddClick}>
-                    Add to cart<i className="fa fa-shopping-cart"></i>
+                <IfElse cond = {product.inStock}>
+                    <button className="btn btn-danger btn-sm" onClick={onAddClick}>
+                        Add to cart
+                        <i className="fa fa-shopping-cart"></i>
                     </button> 
-                </ShouldRender>
+                    <button className="btn btn-danger btn-sm" onClick={onAddClick}>
+                        Notify
+                        <i className="fa fa-bell"></i>
+                    </button> 
+                </IfElse>
             </div>
         </div>
     </div>

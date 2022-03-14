@@ -1,8 +1,9 @@
 import React from "react";
 import axios from 'axios';
-import User from "./User";
+import User from './User';
 import LoaderImg from '../img/loader.gif';
 import ShouldRender from '../utils/ShouldRender';
+import Loader from '../utils/Loader';
 
 class UserList extends React.Component{
 
@@ -28,10 +29,7 @@ class UserList extends React.Component{
         return <div>
             <h1>Users</h1>
             <ShouldRender cond = {this.state.loading} >
-                <div className="loader">
-                    <img src = {LoaderImg} />
-                    Loading...
-                </div>
+            <Loader />
             </ShouldRender>        
             {this.state.users.map(user => <User key={user.login} user={user} /> )}
         </div>

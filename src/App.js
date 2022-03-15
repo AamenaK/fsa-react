@@ -1,14 +1,15 @@
 import React from "react";
 import Header from "./Header";
 import Footer from "./footer";
+import AppRoutes from "./AppRoutes";
 import 'bootstrap/dist/css/bootstrap.css';
-import UserList from "./users/UserList";
 import './App.css';
+
 
 function App() {
    return <div> 
        <Header />
-       <UserList />
+       <AppRoutes />
        <Footer />
    </div>
 }

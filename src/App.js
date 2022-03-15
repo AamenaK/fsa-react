@@ -7,11 +7,7 @@ import './App.css';
 
 
 function App() {
-   return <div> 
-       <Header />
-       <AppRoutes />
-       <Footer />
-   </div>
+   return <AppRoutes />
 }
 
 

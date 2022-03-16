@@ -21,8 +21,11 @@ function Header() {
         <div>
             <Link to="/register" className="btn btn-sm btn-danger">Register</Link>
         </div>
+        <div>
+            <Link to="/login" className="btn btn-sm btn-danger">Login</Link>
+        </div>
     </div>
-  </nav>
+    </nav>
 }
 
 export default Header;

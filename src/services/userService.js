@@ -1,0 +1,16 @@
+import axios from "axios";
+
+const login = (user) => {
+    return axios.post('/api/users/signin', user);
+}
+
+const register = (user) => {
+    return axios.post('/api/users/signup', user);
+}
+
+const saveUser = (user) => {
+    localStorage.getItem('user', JSON.stringify(user));
+}
+
+
+export default { login, saveUser, register };

@@ -18,7 +18,7 @@ class Register extends React.Component {
     }
     
     onRegister = () => {
-        axios.post('https://fsa-node-api.herokuapp.com/api/users/signup', this.state.user)
+        userService.register(this.state.user)
             .then(res => {
                     this.setState({ firstName: '', lastName: '', email: '', password: '', success: true, error: false, userExists: false })
             })

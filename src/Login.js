@@ -2,6 +2,7 @@ import React from "react";
 import ShouldRender from "./utils/ShouldRender";
 import userService from "./services/userService";
 
+
 class Login extends React.Component {
 
     state = {
@@ -42,10 +43,10 @@ class Login extends React.Component {
             </div>
             <div className="mb-3">
                 <label for="pwd" className="form-label">Password</label>
-                <input onChange={ this.onTextChange } name="password" id="pwd" type="password" class="form-control" />
+                <input onChange={this.onTextChange} name="password" id="pwd" type="password" class="form-control" />
             </div>
             <div className="mb-3">
-                <button onClick={onLogin} className="btn btn-primary">Login</button>
+                <button onClick={this.onLogin} className="btn btn-primary">Login</button>
             </div>
         </div>
     }

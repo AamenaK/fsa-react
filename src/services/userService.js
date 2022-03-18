@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "./httpService";
 
 const login = (user) => {
     return axios.post('/api/users/signin', user);

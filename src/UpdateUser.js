@@ -21,6 +21,11 @@ class UpdateUser extends Component {
     onUpdate = () => {
         console.log(this.state);
     }
+
+    onSkillsChange = (skills) => {
+        const user = {...this.state.user, skills };
+        this.setState({user});
+    }
     
     render() { 
         return <div className='col-md-4 m-3'>
@@ -57,7 +62,7 @@ class UpdateUser extends Component {
             </div>
             <div className="mb-3">
                 <label className="form-label">Skills</label>
-                <Chips />      
+                <Chips onSkillsChange={this.onSkillsChange} />      
             </div>
             <div className="mb-3">
                 <button onClick={this.onUpdate} className='btn btn-danger btn-sm'>Update</button>

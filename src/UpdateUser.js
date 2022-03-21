@@ -8,6 +8,12 @@ class UpdateUser extends Component {
 
     constructor() {
         super();
+
+        console.log('constructor...')
+    }
+
+    componentDidMount = () => {
+        console.log('componentDidMount...')
         const user = userService.getUserFromStorage();
         userService.getUser(user.email)
         .then(res => {
@@ -53,6 +59,10 @@ class UpdateUser extends Component {
     onSkillsChange = (skills) => {
         const user = {...this.state.user, skills };
         this.setState({user});
+    }
+
+    componentWillUnmount() {
+        console.log('unmounted...');
     }
     
     render() { 

@@ -2,9 +2,8 @@ import React from "react";
 import "./Chips.css";
 
 class Chips extends React.Component {
-
     state = {
-        skills: []
+        skills: this.props.skills
     };
 
     onEnter = (e) => {
@@ -20,7 +19,7 @@ class Chips extends React.Component {
     }
 
     onRemove = (i) => {
-        const skills = this.state.skills;
+        const skills = this.props.skills;
         skills.splice(i, 1);
         this.setState({ skills });
     }

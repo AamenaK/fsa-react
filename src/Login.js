@@ -22,7 +22,7 @@ class Login extends React.Component {
         try {
             const res = await userService.login(this.state.user);
             userService.saveUser(res.data);
-            window.location.assign('/users');
+            window.location.assign('/users/update');
         } catch (e) {
             this.setState({error: true});
             console.log(e, 'error');
@@ -38,12 +38,12 @@ class Login extends React.Component {
             </ShouldRender>
             <h1>Login</h1>
             <div className="mb-3">
-                <label for="email" className="form-label">Email</label>
-                <input onChange={ this.onTextChange } name="email" id="email" type="email" class="form-control" />
+                <label htmlFor="email" className="form-label">Email</label>
+                <input onChange={ this.onTextChange } name="email" id="email" type="email" className="form-control" />
             </div>
             <div className="mb-3">
-                <label for="pwd" className="form-label">Password</label>
-                <input onChange={this.onTextChange} name="password" id="pwd" type="password" class="form-control" />
+                <label htmlFor="pwd" className="form-label">Password</label>
+                <input onChange={this.onTextChange} name="password" id="pwd" type="password" className="form-control" />
             </div>
             <div className="mb-3">
                 <button onClick={this.onLogin} className="btn btn-primary">Login</button>
@@ -51,5 +51,6 @@ class Login extends React.Component {
         </div>
     }
 }
+
 
 export default Login;

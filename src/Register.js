@@ -2,6 +2,7 @@ import axios from "axios";
 import React from "react";
 import Error from "./utils/Error";
 import ShouldRender from "./utils/ShouldRender";
+import userService from "./services/userService";
 
 class Register extends React.Component {
     
@@ -61,18 +62,18 @@ class Register extends React.Component {
                 <hr />
             </div>
             <div className="mb-3">
-                <label for="fName" className="form-label">Firstname</label>
-                <input name="firstName" value={this.state.firstName} onChange={ this.onTextChange } id="fName" type="text" class="form-control" />
+                <label htmlFor="fName" className="form-label">Firstname</label>
+                <input name="firstName" value={this.state.firstName} onChange={ this.onTextChange } id="fName" type="text" className="form-control" />
                 <ShouldRender cond={!this.state.user.firstName}>
-                    <span class="text-danger">Required</span>
+                    <span className="text-danger">Required</span>
                 </ShouldRender>
                 <ShouldRender cond={ this.state.user.firstName && this.state.user.firstName.length < 3}>
-                    <span class="text-danger">Min 3 chars</span>
+                    <span classNAme="text-danger">Min 3 chars</span>
                 </ShouldRender>           
             </div>
             <div className="mb-3">
-                <label for="lName" className="form-label">Lastname</label>
-                <input name="lastName"  value={this.state.lastName} onChange={ this.onTextChange } id="lName" type="text" class="form-control" />
+                <label htmlFor="lName" className="form-label">Lastname</label>
+                <input name="lastName"  value={this.state.lastName} onChange={ this.onTextChange } id="lName" type="text" className="form-control" />
                 <ShouldRender cond={!this.state.user.lastName}>
                     <span class="text-danger">Required</span>
                 </ShouldRender>
@@ -81,8 +82,8 @@ class Register extends React.Component {
                 </ShouldRender>
             </div>
             <div className="mb-3">
-                <label for="exampleFormControlInput1" className="form-label">Email address</label>
-                <input name="email"  value={this.state.email} onChange={ this.onTextChange } id="email" type="email" class="form-control" />
+                <label htmlFor="exampleFormControlInput1" className="form-label">Email address</label>
+                <input name="email"  value={this.state.email} onChange={ this.onTextChange } id="email" type="email" className="form-control" />
                 <ShouldRender cond={!this.state.user.email}>
                     <span class="text-danger">Required</span>
                 </ShouldRender>
@@ -91,8 +92,8 @@ class Register extends React.Component {
                 </ShouldRender>
             </div>
             <div className="mb-3">
-                <label for="pwd" className="form-label">Password</label>
-                <input name="password"  value={this.state.password} onChange={ this.onTextChange } id="pwd" type="password" class="form-control" />
+                <label htmlFor="pwd" className="form-label">Password</label>
+                <input name="password"  value={this.state.password} onChange={ this.onTextChange } id="pwd" type="password" className="form-control" />
                 <ShouldRender cond={!this.state.user.password}>
                     <span class="text-danger">Required</span>
                 </ShouldRender>

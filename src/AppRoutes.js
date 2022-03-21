@@ -8,14 +8,16 @@ import NotFound from "./NotFound";
 import Footer from "./footer";
 import Register from "./Register";
 import Login from "./Login";
+import UpdateUser from "./UpdateUser";
 
 const AppRoutes = () => <BrowserRouter>
     <Header />
     <Routes>
-        <Route path="/" element={<Home/>} />
-        <Route path="/about" element={<About/>} />
-        <Route path="/contact" element={<Contact/>} />
-        <Route path="/users" element={<UserList/>} />
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/users" element={<UserList />} />
+        <Route path="/users/update" element={<UpdateUser />} />
         {/* <Route path="*" element={<Home/>} /> */}
         {/* <Route path="*" element={<Navigate to="/" />} /> */}
         <Route path="/register" element={<Register />} />

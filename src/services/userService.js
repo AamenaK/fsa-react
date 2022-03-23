@@ -1,5 +1,15 @@
 import axios from "./httpService";
 
+const getHeaders = () => {
+    const userFromLocalStorage = localStorage.getItem('user');
+    const json = JSON.parse(userFromLocalStorage) || {};
+    const token = json.token;
+    const headers = {
+        authorization: `Bearer ${token}`
+    };
+    return headers;
+};
+
 const login = (user) => {
     return axios.post('/api/users/signin', user);
 }
@@ -13,22 +23,10 @@ const saveUser = (user) => {
 }
 
 const update = (user) => {
-    const userFromLocalStorage = localStorage.getItem('user');
-    const json = JSON.parse(userFromLocalStorage) || {};
-    const token = json.token;
-    const headers = {
-        authorization: `Bearer ${token}`
-    };
-    return axios.put(`/api/users/${user.email}`, user, { headers })
+    return axios.put(`/api/users/${user.email}`, user, { headers: getHeaders() })
 };
 const getUser = (email) => {
-    const userFromLocalStorage = localStorage.getItem('user');
-    const json = JSON.parse(userFromLocalStorage) || {};
-    const token = json.token;
-    const headers = {
-        authorization: `Bearer ${token}`
-    };
-    return axios.get(`/api/users/${email}`, { headers });
+    return axios.get(`/api/users/${email}`, { headers: getHeaders() });
 };
 
 const getUserFromStorage = () => {
@@ -36,14 +34,8 @@ const getUserFromStorage = () => {
     return JSON.parse(data);
 }
 
-const getUsers = () => {
-    const userFromLocalStorage = localStorage.getItem('user');
-    const json = JSON.parse(userFromLocalStorage) || {};
-    const token = json.token;
-    const headers = {
-        authorization: `Bearer ${token}`
-    };
-    return axios.get('/api/users/page/0/size/100', { headers });
+const getUsers = (page, size) => {
+    return axios.get(`/api/users/page/${page}/size/${size}`, { headers: getHeaders() });
 }
 
 export default {

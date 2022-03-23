@@ -1,37 +1,37 @@
-import React from "react";
+import React, { useState } from "react";
 import ShouldRender from "./utils/ShouldRender";
 import userService from "./services/userService";
+import { useNavigate } from "react-router-dom";
 
 
-class Login extends React.Component {
+const Login = () => {
+    const [user, setUser] = useState({email: '', password: ''});
+    const [error, setError] = useState(false);
+    const navigate = useNavigate();
 
-    state = {
-        user: {
-            email: '',
-            password:''
-        },
-        error: false
+    const onTextChange = (e) => {
+        const newUser = { ...user, [e.target.name]: e.target.value };
+        setUser(newUser);
     }
 
-    onTextChange = (e) => {
-        const newUser = { ...this.state.user, [e.target.name]: e.target.value };
-        this.setState({ user: newUser});
-    }
-
-    onLogin = async () => {
+    const onLogin = async () => {
         try {
-            const res = await userService.login(this.state.user);
-            userService.saveUser(res.data);
-            window.location.assign('/users/update');
+            const res = await userService.login(user);
+            const userInfo = res.data;
+            console.log(userInfo);
+            userService.saveUser(userInfo);
+            if (userInfo.role === 0)
+                navigate('/users/update');
+            else
+                navigate('/users');
         } catch (e) {
-            this.setState({error: true});
+            setError(true);
             console.log(e, 'error');
         }
     }
 
-    render () {
         return <div className="col-md-4 m-3">
-            <ShouldRender cond={this.state.error}>
+            <ShouldRender cond={error}>
                 <div className="alert alert-danger">
                     Wrong username or password
                 </div>
@@ -39,18 +39,16 @@ class Login extends React.Component {
             <h1>Login</h1>
             <div className="mb-3">
                 <label htmlFor="email" className="form-label">Email</label>
-                <input onChange={ this.onTextChange } name="email" id="email" type="email" className="form-control" />
+                <input onChange={onTextChange} name="email" id="email" type="email" className="form-control" />
             </div>
             <div className="mb-3">
                 <label htmlFor="pwd" className="form-label">Password</label>
-                <input onChange={this.onTextChange} name="password" id="pwd" type="password" className="form-control" />
+                <input onChange={onTextChange} name="password" id="pwd" type="password" className="form-control" />
             </div>
             <div className="mb-3">
-                <button onClick={this.onLogin} className="btn btn-primary">Login</button>
+                <button onClick={onLogin} className="btn btn-primary">Login</button>
             </div>
         </div>
     }
-}
-
 
 export default Login;

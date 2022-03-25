@@ -23,8 +23,11 @@ const User = ({user}) => {
                 <div>
                     <i className="fa fa-envelope"></i> {user.email}
                 </div>
-                <div><b>{Degree[user.degree]}</b></div>
-                <div><b>{Qualification[user.qualification]}</b></div>
+                <div>
+                    <i className="fa fa-graduation-cap"></i>
+                    <b>{Degree[user.degree]}</b>
+                    <b>{Qualification[user.qualification]}</b>
+                </div>
             </div>
             <div className="card-footer">
                 <button className="btn btn-danger">

@@ -34,12 +34,12 @@ const getUserFromStorage = () => {
     return JSON.parse(data);
 }
 
-const getUsers = (page, size, search, degree, sort) => {
+const getUsers = (page, size, search, degree, sort, sortDir) => {
     let url = `/api/users/page/${page}/size/${size}?name=${search}`;
     if (degree !== '')
         url = `${url}&degree=${degree}`
     if (sort !== '')
-    url = `${url}&sort=${sort}`
+    url = `${url}&sort=${sort}&sortDir=${sortDir}`
     return axios.get(url, {
         headers: getHeaders() 
     });

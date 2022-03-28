@@ -15,12 +15,13 @@ const UserList = () => {
     const [search, setSearch] = useState('');
     const [degree, setDegree] = useState('');
     const [sort, setSort] = useState('');
+    const [sortDir, setSortDir] = useState(1);
     const [userData, setUserData] = useState({ data: [], metadata: {} });
     const navigate = useNavigate();
 
     useEffect(async () => {
         try {
-            const res = await userService.getUsers(page, size, search, degree, sort );
+            const res = await userService.getUsers(page, size, search, degree, sort, sortDir );
             setUserData(res.data);
             console.log(userData)
         } catch (e) {
@@ -78,7 +79,11 @@ const UserList = () => {
     }
 
     const onSortChange = (evt) => {
-        setSort(evt.target.value);
+        const val = evt.target.value;
+        const tokens = val.split(' ');
+        setSort(tokens[0]);
+        setSortDir(tokens[1]);
+        // setSort(evt.target.value);
     }
 
     return <div>
@@ -87,11 +92,12 @@ const UserList = () => {
             <Error />
         </ShouldRender>
         <div className="row m-3">
-            <div className="col-md-5">
+            <div className="col-md-3">
                 {/* <i className="fa fa-search"></i> */}
                 <input onKeyPress={onKeyPress} placeholder="Enter Name" type="text"className="form-control">
                 </input>
-
+            </div>
+            <div className="col-md-2">
                 <select value={degree} onChange={onDegreeChange} className="form-control">
                     <option value="">Degree</option>
                     <option value="0">BE/BTech</option>
@@ -99,20 +105,23 @@ const UserList = () => {
                     <option value="2">BSc</option>
                     <option value="3">Others</option>
                 </select>
-
-                <select value={sort} onChange={onSortChange} className="form-control">
+            </div>
+            <div className="col-md-2">
+                <select value={`${sort} ${sortDir}`} onChange={onSortChange} className="form-control">
                     <option value="">Sort</option>
-                    <option value="updatedAt">updatedAt</option>
-                    <option value="firstName">firstName</option>
-                    <option value="lastName">lastName</option>
+                    <option value="updatedAt 1">updatedAt</option>
+                    <option value="updatedAt -1">updatedAt DESC</option>
+                    <option value="firstName 1">firstName</option>
+                    <option value="firstName -1">firstName DESC</option>
+                    <option value="lastName 1">lastName</option>
+                    <option value="lastName -1">lastName DESC</option>
                 </select>
             </div>
         </div>
         <Pagination />
         {userData.data.map(user => <User user={user} /> )}
         <Pagination />
-
-    </div>
+        </div>
 }
 
 export default UserList;

@@ -27,8 +27,8 @@ const User = ({user}) => {
                 <ShouldRender cond= {user.degree || user.qualification}>
                     <div>
                         <i className="fa fa-graduation-cap"></i>
-                        <b>{Degree[user.degree]}</b>
-                        <b>{Qualification[user.qualification]}</b>
+                        <span>{Degree[user.degree]}</span>
+                        <span>{Qualification[user.qualification]}</span>
                     </div>
                 </ShouldRender>
             </div>

@@ -14,19 +14,20 @@ const UserList = () => {
     const [size, setSize] = useState(5);
     const [search, setSearch] = useState('');
     const [degree, setDegree] = useState('');
+    const [sort, setSort] = useState('');
     const [userData, setUserData] = useState({ data: [], metadata: {} });
     const navigate = useNavigate();
 
     useEffect(async () => {
         try {
-            const res = await userService.getUsers(page, size, search, degree);
+            const res = await userService.getUsers(page, size, search, degree, sort );
             setUserData(res.data);
             console.log(userData)
         } catch (e) {
             if (e.message.indexOf('401') > -1) navigate('/login');
             else setError(true);
         }
-    }, [page, size, search, degree]);
+    }, [page, size, search, degree, sort]);
 
     const prev = () => {
         setPage(page - 1);
@@ -76,6 +77,10 @@ const UserList = () => {
         setDegree(evt.target.value);
     }
 
+    const onSortChange = (evt) => {
+        setSort(evt.target.value);
+    }
+
     return <div>
         <h1>Users</h1>
         <ShouldRender cond={error}>
@@ -93,6 +98,13 @@ const UserList = () => {
                     <option value="1">BCom</option>
                     <option value="2">BSc</option>
                     <option value="3">Others</option>
+                </select>
+
+                <select value={sort} onChange={onSortChange} className="form-control">
+                    <option value="">Sort</option>
+                    <option value="updatedAt">updatedAt</option>
+                    <option value="firstName">firstName</option>
+                    <option value="lastName">lastName</option>
                 </select>
             </div>
         </div>

@@ -8,12 +8,12 @@ const Degree = [
     'Others'
 ]
 
-const Qualification = {
-    0: '10+2',
-    1: 'UG',
-    2: 'PG',
-    3: 'Others'
-};
+const Qualification = [
+    '10+2',
+    'UG',
+    'PG',
+    'Others'
+]
 
 const User = ({user}) => {
     return <div className="m-3 col-md-3">

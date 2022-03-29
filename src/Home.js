@@ -1,8 +1,36 @@
-import UpdateUser from "./UpdateUser";
-import Chips from "./utils/Chips";
+import React, { useContext, useState } from "react";
+
+const DataContext = React.createContext('data');
+
+const Level3 = () => {
+    const cnt = useContext(DataContext);
+    return <>
+        <h1>Level3, count is {cnt} </h1>
+    </>
+}
+
+const Level2 = () => {
+    const cnt = useContext(DataContext);
+    return <>
+        <h1>Level2, {cnt} </h1>
+        <Level3 />
+    </>
+}
+
+const Level1 = () => <>
+        <h1>Level1</h1>
+        <Level2 />
+</>
+
+const Root = () => {
+    return <DataContext.Provider value={10000000} >
+        <Level1 />
+    </DataContext.Provider>
+}
 
 const Home = () => <> 
     <h1>Home Page</h1>
+    <Root />
 </>
 
 export default Home;

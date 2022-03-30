@@ -129,7 +129,6 @@ class UpdateUser extends Component {
 
     componentWillUnmount() {
         console.log('unmounted');
-        // clean up
     }
 }
 

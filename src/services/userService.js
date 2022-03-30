@@ -1,4 +1,4 @@
-import axios from "./httpService";
+import axios from './httpService';
 
 const getHeaders = () => {
     const userFromLocalStorage = localStorage.getItem('user');
@@ -11,11 +11,13 @@ const getHeaders = () => {
 };
 
 const login = (user) => {
-    return axios.post('/api/users/signin', user);
+    return axios.post('/api/users/signin',
+        user);
 }
 
 const register = (user) => {
-    return axios.post('/api/users/signup', user);
+    return axios.post('/api/users/signup',
+        user);
 }
 
 const saveUser = (user) => {
@@ -23,11 +25,9 @@ const saveUser = (user) => {
 }
 
 const update = (user) => {
-    const headers = {
-        ...getHeaders(),
-    }
-    return axios.put(`/api/users/${user.get('email')}`, user, { headers })
+    return axios.put(`/api/users/${user.get('email')}`, user, { headers: getHeaders() });
 };
+
 const getUser = (email) => {
     return axios.get(`/api/users/${email}`, { headers: getHeaders() });
 };
@@ -42,9 +42,9 @@ const getUsers = (page, size, search, degree, sort, sortDir) => {
     if (degree !== '')
         url = `${url}&degree=${degree}`
     if (sort !== '')
-    url = `${url}&sort=${sort}&sortDir=${sortDir}`
+        url = `${url}&sort=${sort}&sortDir=${sortDir}`
     return axios.get(url, {
-        headers: getHeaders() 
+        headers: getHeaders()
     });
 }
 
@@ -57,11 +57,11 @@ const isLoggedIn = () => {
 }
 
 const getUserByEmail = (email) => {
-    return axios.get(`/api/users/${email}`,{ headers: getHeaders() })
+    return axios.get(`/api/users/${email}`, { headers: getHeaders() });
 }
 
 export default {
-    login, saveUser, register, 
+    login, saveUser, register,
     update, getUser, getUserFromStorage,
     getUsers,
     logout,

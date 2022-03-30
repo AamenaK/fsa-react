@@ -3,11 +3,11 @@ import { useParams } from "react-router-dom";
 import userService from "./services/userService";
 import User from "./users/User";
 import ShouldRender from "./utils/ShouldRender";
-import PDFViewer from "./users/User";
+import PDFViewer from './utils/PDFViewer';
 
 const UserDetail = (props) => {
 
-    const[user, setUser] = useState({});
+    const [user, setUser] = useState({});
     const params = useParams();
 
     useEffect(async () => {
@@ -17,8 +17,8 @@ const UserDetail = (props) => {
 
     return <div>
         <User user={user} />
-        <ShouldRender cond = {user.resume}>
-            <PDFViewer filename={`https://fsa-node-api.herokuapp.com/uploads/${user.resume}`} />
+        <ShouldRender cond={user.resume}>
+            <PDFViewer filename={`https://fsa-jobs-api.herokuapp.com/uploads/${user.resume}`} />
         </ShouldRender>
     </div>
 }

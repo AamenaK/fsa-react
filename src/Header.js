@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import UserContext from './context/UserContext';
 import userService from './services/userService';
@@ -7,12 +7,12 @@ import { useNavigate } from 'react-router-dom';
 import IfElse from './utils/IfElse';
 
 function Header() {
-    const { isLoggedIn, setLogin } = useContext(UserContext);
+    const { isLoggedIn, setLogIn } = useContext(UserContext);
     const navigate = useNavigate();
 
     const onLogout = () => {
         userService.logout();
-        setLogin(false);
+        setLogIn(false);
         navigate('/login');
     }
 
@@ -33,11 +33,11 @@ function Header() {
                     <Link className="nav-link" to="/contact">Contact</Link>
                 </li>
             </ul>
-            <IfElse cond = {isLoggedIn}>
+            <IfElse cond={isLoggedIn}>
                 <button onClick={onLogout} className="btn btn-sm btn-danger">Logout</button>
                 <>
                     <div>
-                        <Link to="/register" className="btn btn-sm btn-danger">Register</Link>
+                        <Link to="/register" className="btn btn-sm btn-danger">Register</Link>=
                     </div>
                     <div>
                         <Link to="/login" className="btn btn-sm btn-danger">Login</Link>

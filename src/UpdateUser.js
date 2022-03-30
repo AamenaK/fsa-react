@@ -10,20 +10,20 @@ class UpdateUser extends Component {
     constructor() {
         super();
 
-        console.log('constructor...')
+        console.log('constructor...');
     }
 
     componentDidMount = () => {
-        console.log('componentDidMount...')
+        console.log('componentDidMount...');
         const user = userService.getUserFromStorage();
         userService.getUser(user.email)
-        .then(res => {
-            this.setState({ user: res.data })
-        })
-        .catch(e => {
-            console.log(e)
-            this.setState({ error: true });
-        });
+            .then(res => {
+                this.setState({ user: res.data });
+            })
+            .catch(e => {
+                console.log(e);
+                this.setState({ error: true });
+            });
     }
 
     state = {
@@ -33,29 +33,29 @@ class UpdateUser extends Component {
             lastName: '',
             qualification: '',
             degree: '',
-            skills:[]
+            skills: []
         }
     };
 
     onValueChange = (e) => {
-        const user = {...this.state.user, [e.target.name]: e.target.value };
-        this.setState ({ user });
+        const user = { ...this.state.user, [e.target.name]: e.target.value }
+        this.setState({ user });
     }
 
     onUpdate = async () => {
         try {
             const fd = new FormData();
             for (let key in this.state.user) {
-                fd.append(key,this.state.user[key]);
+                fd.append(key, this.state.user[key]);
             }
 
-            await userService.update(fd);            
+            await userService.update(fd);
             this.setState({ error: false, success: true });
 
             setTimeout(() => {
                 this.setState({ success: false });
             }, 3000);
-            console.log('successfully updated')
+            console.log('successfully updated');
         } catch (e) {
             console.log(e);
             this.setState({ error: true });
@@ -63,27 +63,23 @@ class UpdateUser extends Component {
     }
 
     onSkillsChange = (skills) => {
-        const user = {...this.state.user, skills };
-        this.setState({user});
-    }
-
-    onFileChange = (evt) => {
-        const user = {...this.state.user, resume: evt.target.files[0] };
+        const user = { ...this.state.user, skills };
         this.setState({ user });
     }
 
-    componentWillUnmount() {
-        console.log('unmounted...');
+    onFileChange = (evt) => {
+        const user = { ...this.state.user, resume: evt.target.files[0] }
+        this.setState({ user });
     }
-    
-    render() { 
+
+    render() {
         const { firstName, lastName, qualification, degree, skills } = this.state.user;
-        return <div className='col-md-4 m-3'>
+        return <div className="col-md-4 m-3">
             <ShouldRender cond={this.state.error}>
                 <Error />
             </ShouldRender>
             <ShouldRender cond={this.state.success}>
-                <div className='alert alert-success'>Successfully Updated</div>
+                <div className="alert alert-success">Successfully Updated</div>
             </ShouldRender>
             <div className="mb-3">
                 <h3>Update Profile</h3>
@@ -91,16 +87,16 @@ class UpdateUser extends Component {
             </div>
             <div className="mb-3">
                 <label htmlFor="fName" className="form-label">Firstname</label>
-                <input value={firstName} onChange={this.onValueChange} name="firstName" id="fName" type="text" className="form-control" />        
+                <input value={firstName} onChange={this.onValueChange} name="firstName" id="fName" type="text" className="form-control" />
             </div>
             <div className="mb-3">
-                <label htmlFor="lName" className="form-label">Lastname</label>
-                <input value={lastName} onChange={this.onValueChange} name="lastName" id="lName" type="text" className="form-control" />        
+                <label htmlFor="lName" className="form-label">Firstname</label>
+                <input value={lastName} onChange={this.onValueChange} name="lastName" id="fName" type="text" className="form-control" />
             </div>
             <div className="mb-3">
                 <label htmlFor="qualification" className="form-label">Qualification</label>
                 <select value={qualification} onChange={this.onValueChange} name="qualification" className="form-control">
-                    <option value="">---Select---</option>
+                    <option value="">--Select--</option>
                     <option value="0">10+2</option>
                     <option value="1">UG</option>
                     <option value="2">PG</option>
@@ -109,22 +105,23 @@ class UpdateUser extends Component {
             <div className="mb-3">
                 <label htmlFor="degree" className="form-label">Degree</label>
                 <select value={degree} onChange={this.onValueChange} name="degree" className="form-control">
-                    <option value="">---Select---</option>
+                    <option value="">--Select--</option>
                     <option value="0">BE/BTech</option>
                     <option value="1">BCom</option>
                     <option value="2">BCA</option>
                     <option value="3">Others</option>
-                </select>        
+                </select>
             </div>
             <div className="mb-3">
                 <label className="form-label">Skills</label>
-                <Chips skills={skills} onSkillsChange={this.onSkillsChange} />      
-            </div>
-            <div className='mb-3'>
-                <input type="file" onChange={this.onFileChange} className='form-control' />
+                <Chips skills={skills} onSkillsChange={this.onSkillsChange} />
             </div>
             <div className="mb-3">
-                <button onClick={this.onUpdate} className='btn btn-danger btn-sm'>Update</button>
+                <input type="file" onChange={this.onFileChange} className="form-control" />
+            </div>
+
+            <div className="mb-3">
+                <button onClick={this.onUpdate} className="btn btn-danger btn-sm">Update</button>
             </div>
             <PDFViewer filename={this.state.user.resume} />
         </div>
@@ -132,7 +129,8 @@ class UpdateUser extends Component {
 
     componentWillUnmount() {
         console.log('unmounted');
+        // clean up
     }
 }
- 
+
 export default UpdateUser;

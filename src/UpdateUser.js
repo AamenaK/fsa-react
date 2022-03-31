@@ -33,7 +33,7 @@ class UpdateUser extends Component {
             lastName: '',
             qualification: '',
             degree: '',
-            skills: []
+            skills: [],
         }
     };
 

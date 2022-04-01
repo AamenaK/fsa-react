@@ -6,9 +6,9 @@ import UserContext from "./context/UserContext";
 import userService from "./services/userService";
 
 function App() {
-   const [isLoggedIn, setLogin] = useState(userService.isLoggedIn);
+   const [isLoggedIn, setLogIn] = useState(userService.isLoggedIn);
    
-   return <UserContext.Provider value={{ isLoggedIn, setLogin }} >
+   return <UserContext.Provider value={{ isLoggedIn, setLogIn }} >
       <AppRoutes />
    </UserContext.Provider>
    

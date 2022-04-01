@@ -10,7 +10,7 @@ const Login = () => {
     const [error, setError] = useState(false);
     const navigate = useNavigate();
 
-    const { setLogin } = useContext(UserContext);
+    const { setLogIn } = useContext(UserContext);
 
     useEffect(() => {
     }, []);
@@ -26,7 +26,7 @@ const Login = () => {
             const res = await userService.login(user);
             const userInfo = res.data;
             userService.saveUser(userInfo);
-            setLogin(true);
+            setLogIn(true);
             if (userInfo.role === 0)
                 navigate('/users/update');
             else

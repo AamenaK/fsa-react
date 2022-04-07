@@ -18,7 +18,7 @@ const UserDetail = (props) => {
     return <div>
         <User user={user} />
         <ShouldRender cond={user.resume}>
-            <PDFViewer filename={`https://fsa-node-api.herokuapp.com/uploads/${user.resume}`} />
+            <PDFViewer filename={`https://file-uploads.herokuapp.com//uploads/${user.resume}`} />
         </ShouldRender>
     </div>
 }
